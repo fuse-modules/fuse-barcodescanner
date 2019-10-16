@@ -9,6 +9,12 @@ using Fuse.Controls.Native;
 
 namespace Fuse.Controls.Native.Android
 {
+	extern(!ANDROID) internal class BarcodeScanner
+	{
+		[UXConstructor]
+		public BarcodeScanner([UXParameter("Host")]IBarcodeScannerHost host) {}
+	}
+
 	extern(ANDROID) internal class BarcodeScanner : ViewHandle, IBarcodeScannerView
 	{
 		static BarcodeScannerHandle CreateBarcodeScannerView()
@@ -198,7 +204,7 @@ namespace Fuse.Controls.Native.Android
 		@}
 	}
 
-	[Require("Gradle.Dependency.Compile", "me.dm7.barcodescanner:zbar:1.9.1")]
+	[Require("Gradle.Dependency.Implementation", "me.dm7.barcodescanner:zbar:1.9.1")]
 	[Require("AndroidManifest.Permission", "android.permission.CAMERA")]
 	[ForeignInclude(Language.Java,
 		"me.dm7.barcodescanner.zbar.ZBarScannerView",
@@ -276,7 +282,7 @@ namespace Fuse.Controls.Native.Android
 		@}
 	}
 
-	[Require("Gradle.Dependency.Compile", "me.dm7.barcodescanner:zxing:1.9.1")]
+	[Require("Gradle.Dependency.Implementation", "me.dm7.barcodescanner:zxing:1.9.1")]
 	[Require("AndroidManifest.Permission", "android.permission.CAMERA")]
 	[ForeignInclude(Language.Java,
 		"me.dm7.barcodescanner.zxing.ZXingScannerView",
