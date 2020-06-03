@@ -251,7 +251,7 @@ namespace Fuse.Controls.Native.Android
 					return new Rect(0, 0, getWidth(), getHeight());
 				}
 			}
-			return new ZBarScannerView(@(Activity.Package).@(Activity.Name).GetRootActivity()) {
+			return new ZBarScannerView(com.fuse.Activity.getRootActivity()) {
 				@Override
 				protected IViewFinder createViewFinderView(Context context) {
 					return new EmptyViewFinder(context);
@@ -341,7 +341,7 @@ namespace Fuse.Controls.Native.Android
 					return new Rect(0, 0, getWidth(), getHeight());
 				}
 			}
-			return new ZXingScannerView(@(Activity.Package).@(Activity.Name).GetRootActivity()) {
+			return new ZXingScannerView(com.fuse.Activity.getRootActivity()) {
 				@Override
 				protected IViewFinder createViewFinderView(Context context) {
 					return new EmptyViewFinder(context);
