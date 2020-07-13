@@ -34,7 +34,6 @@ namespace Fuse.Controls.Native.iOS
 			public Scanner(ObjC.Object handle)
 			{
 				_handle = handle;
-				InstallResultHandler(_handle, OnGotResult);
 			}
 
 			void OnGotResult(string code)
@@ -48,7 +47,7 @@ namespace Fuse.Controls.Native.iOS
 			public bool IsScanning { get { return IsScanningImpl(_handle); } }
 			public void Freeze() { Freeze(_handle); }
 			public void Unfreeze() { Unfreeze(_handle); }
-			public bool StartScanning(out string errorMessage) { return StartScanningImpl(_handle, out errorMessage); }
+			public bool StartScanning(out string errorMessage) { return StartScanningImpl(_handle, OnGotResult, out errorMessage); }
 			public void SetFlashlightEnabled(bool enabled) { SetFlashlightEnabled(_handle, enabled); }
 			public void StopScanning() { StopScanning(_handle); }
 			public bool GetFlashlightEnabled() { return GetFlashlightEnabled(_handle); }
@@ -78,9 +77,15 @@ namespace Fuse.Controls.Native.iOS
 			@}
 
 			[Foreign(Language.ObjC)]
-			static bool StartScanningImpl(ObjC.Object scannerHandle, out string errorMessage)
+			static bool StartScanningImpl(ObjC.Object scannerHandle, Action<string> resultHandler, out string errorMessage)
 			@{
 				MTBBarcodeScanner* scanner = (MTBBarcodeScanner*)scannerHandle;
+				if (scanner.resultBlock == nil)
+					scanner.resultBlock = ^(NSArray<AVMetadataMachineReadableCodeObject*>* codes) {
+						if (codes.count > 0) {
+							resultHandler(codes.firstObject.stringValue);
+						}
+					};
 				NSError* error = nil;
 	            if (![scanner startScanningWithError: &error]) {
 	            	*errorMessage = [NSString stringWithFormat:@"%@", error];
@@ -88,17 +93,6 @@ namespace Fuse.Controls.Native.iOS
 	            } else {
 	            	return true;
 	            }
-			@}
-
-			[Foreign(Language.ObjC)]
-			static void InstallResultHandler(ObjC.Object scannerHandle, Action<string> resultHandler)
-			@{
-				MTBBarcodeScanner* scanner = (MTBBarcodeScanner*)scannerHandle;
-	            scanner.resultBlock = ^(NSArray<AVMetadataMachineReadableCodeObject*>* codes) {
-	                if (codes.count > 0) {
-	                    resultHandler(codes.firstObject.stringValue);
-	                }
-	            };
 			@}
 
 			[Foreign(Language.ObjC)]
