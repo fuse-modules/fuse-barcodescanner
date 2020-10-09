@@ -1,6 +1,7 @@
 using Uno;
 using Uno.UX;
 using Uno.Threading;
+using BarcodeScanner;
 
 namespace Fuse.Controls
 {
@@ -46,7 +47,7 @@ namespace Fuse.Controls
 		class DummyBarcodeScannerView : IBarcodeScannerView
 		{
 			Future<T> Reject<T>() { return new Promise<T>().RejectWithMessage("Native view not initialized!"); }
-			
+
 			Future<object> IBarcodeScannerView.Start() { return Reject<object>(); }
 			Future<object> IBarcodeScannerView.Stop() { return Reject<object>(); }
 			Future<object> IBarcodeScannerView.Pause() { return Reject<object>(); }

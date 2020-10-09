@@ -8,6 +8,6 @@
   "Includes": [
     "*",
     "iOS/BarcodeView.h:ObjCHeader:iOS",
-	"iOS/BarcodeView.mm:ObjCSource:iOS",
+    "iOS/BarcodeView.mm:ObjCSource:iOS",
   ]
 }

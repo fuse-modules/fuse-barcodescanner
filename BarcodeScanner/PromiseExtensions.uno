@@ -1,7 +1,7 @@
 using Uno;
 using Uno.Threading;
 
-namespace Fuse.Controls
+namespace BarcodeScanner
 {
 	internal static class PromiseExtensions
 	{

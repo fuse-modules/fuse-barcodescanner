@@ -2,7 +2,7 @@ using Uno;
 using Uno.UX;
 using Uno.Threading;
 using Uno.Compiler.ExportTargetInterop;
-
+using BarcodeScanner;
 using Fuse.Controls.Native;
 
 namespace Fuse.Controls.Native.iOS
@@ -87,12 +87,12 @@ namespace Fuse.Controls.Native.iOS
 						}
 					};
 				NSError* error = nil;
-	            if (![scanner startScanningWithError: &error]) {
-	            	*errorMessage = [NSString stringWithFormat:@"%@", error];
-	            	return false;
-	            } else {
-	            	return true;
-	            }
+				if (![scanner startScanningWithError: &error]) {
+					*errorMessage = [NSString stringWithFormat:@"%@", error];
+					return false;
+				} else {
+					return true;
+				}
 			@}
 
 			[Foreign(Language.ObjC)]
@@ -101,7 +101,7 @@ namespace Fuse.Controls.Native.iOS
 				MTBBarcodeScanner* scanner = (MTBBarcodeScanner*)scannerHandle;
 				scanner.torchMode = enabled ? MTBTorchModeOn : MTBTorchModeOff;
 			@}
-			
+
 			[Foreign(Language.ObjC)]
 			static bool GetFlashlightEnabled(ObjC.Object scannerHandle)
 			@{
@@ -131,7 +131,7 @@ namespace Fuse.Controls.Native.iOS
 		{
 			if (_isStarted)
 				return Reject("Scanner already started");
-			
+
 			string error = null;
 			if (!_scanner.StartScanning(out error))
 				return Reject("Failed to start scanner: " + error);
