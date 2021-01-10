@@ -3,7 +3,7 @@
     "Fuse",
     "FuseJS",
     "Fuse.Scripting",
-    "Uno.Permissions"
+    "Fuse.Android.Permissions"
   ],
   "Includes": [
     "*",

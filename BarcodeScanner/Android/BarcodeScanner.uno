@@ -2,7 +2,7 @@ using Uno;
 using Uno.UX;
 using Uno.Threading;
 using Uno.Compiler.ExportTargetInterop;
-using Uno.Permissions;
+using Fuse.Android.Permissions;
 using Uno.Collections;
 using BarcodeScanner;
 using Fuse.Controls.Native;

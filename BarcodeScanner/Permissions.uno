@@ -5,7 +5,7 @@ using Uno.UX;
 using Uno.Threading;
 using Uno.Collections;
 using Fuse.Scripting;
-using Uno.Permissions;
+using Fuse.Android.Permissions;
 
 namespace BarcodeScanner
 {
