@@ -1,0 +1,38 @@
+{
+  "name": "fuse-barcodescanner",
+  "version": "1.0.0",
+  "description": "BarcodeScanner package for Fuse Open.",
+  "devDependencies": {
+    "fuse-sdk": "^2.0.0-beta.4"
+  },
+  "keywords": [
+    "uno",
+    "fuse",
+    "barcode",
+    "qr-code",
+    "scanner",
+    "android",
+    "ios"
+  ],
+  "files": [
+    "BarcodeScanner/build/BarcodeScanner/*",
+    ".unoconfig"
+  ],
+  "scripts": {
+    "build": "uno doctor BarcodeScanner",
+    "prepack": "uno doctor BarcodeScanner -c Release",
+    "android": "uno build android BarcodeScannerExample --run",
+    "ios": "uno build ios BarcodeScannerExample -DCOCOAPODS --debug",
+    "clean": "uno clean BarcodeScanner BarcodeScannerExample -v"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fuse-modules/fuse-barcodescanner.git"
+  },
+  "author": "Fuse Open",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fuse-modules/fuse-barcodescanner/issues"
+  },
+  "homepage": "https://github.com/fuse-modules/fuse-barcodescanner#readme"
+}

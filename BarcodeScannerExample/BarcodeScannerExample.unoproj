@@ -1,10 +1,8 @@
 {
   "Packages": [
     "Fuse",
-    "FuseJS"
-  ],
-  "Projects": [
-  	"../BarcodeScanner/BarcodeScanner.unoproj"
+    "FuseJS",
+    "BarcodeScanner"
   ],
   "Includes": [
     "*"

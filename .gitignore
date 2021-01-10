@@ -1,5 +1,5 @@
-build
-.build
-.uno
-.cache
 .DS_Store
+.uno
+*.tgz
+build
+node_modules
